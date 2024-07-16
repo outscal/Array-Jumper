@@ -9,11 +9,14 @@ namespace Player
 {
 	
 	using namespace Global;
+	using namespace UI::UIElement;
 
 	PlayerView::PlayerView(PlayerController* controller)
 	{
 		player_controller = controller;
 		game_window = nullptr;
+		player_image = nullptr;
+		player_image = new ImageView();
 
 		 
 	}
