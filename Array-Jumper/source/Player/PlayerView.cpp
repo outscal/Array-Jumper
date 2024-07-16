@@ -10,7 +10,7 @@ namespace Player
 	PlayerView::PlayerView()
 	{
 		game_window = nullptr;
-		player_image = new ImageView();
+		//player_image = new ImageView();
 	}
 
 	PlayerView::~PlayerView() {}
