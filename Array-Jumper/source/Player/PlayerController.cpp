@@ -17,7 +17,7 @@ namespace Player
 	{
 		player_model = new PlayerModel();
 		player_view = new PlayerView(this);
-		//event_service = new EventService();
+		
 
 	}
 

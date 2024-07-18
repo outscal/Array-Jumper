@@ -11,7 +11,7 @@ namespace Player
 		
 	{
 	private:
-		EventService* event_service;
+		Event::EventService* event_service;
 		PlayerModel* player_model;
 		PlayerView* player_view;
 
