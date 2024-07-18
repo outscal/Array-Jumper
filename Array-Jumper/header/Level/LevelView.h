@@ -29,9 +29,10 @@ namespace Level
 		void updateImages();
 		void drawLevel();
 		void deleteImages();
+		UI::UIElement::ImageView* getBoxOverlayImage(BlockType block_type);
 
 	public:
-		ImageView* Level::LevelView::getBoxOverlayImage(BlockType block_type);
+		
 		LevelView(LevelController* controller);
 		~LevelView();
 		void calculateBoxDimensions();
