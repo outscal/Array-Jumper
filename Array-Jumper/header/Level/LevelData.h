@@ -1,9 +1,9 @@
 #pragma once
-#include "../../header/Level/BlockType.h"
+#include "BlockType.h"
 
 namespace Level
 {
-
+        
     struct LevelData
     {
         static const int NUMBER_OF_BOXES = 10;

@@ -10,22 +10,19 @@ namespace Player
 
 	void PlayerService::initialize()
 	{
-		
 		player_controller->initialize();
 	}
 
 	void PlayerService::update()
 	{
-		
 		player_controller->update();
 	}
 
 	void PlayerService::render()
 	{
-		
 		player_controller->render();
-		
 	}
+
 
 	void PlayerService::destroy() { delete(player_controller); }
 }

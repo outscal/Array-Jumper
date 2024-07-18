@@ -1,5 +1,5 @@
 #pragma once
-#include "../../header/Level/LevelModel.h"
+#include "LevelModel.h"
 
 namespace Level
 {
@@ -15,11 +15,13 @@ namespace Level
 	public:
 		LevelController();
 		~LevelController();
-
+		
 		void initialize();
 		void update();
 		void render();
-		BlockType getCurrentBoxValue(int currentPosition);
+
 		BoxDimensions getBoxDimensions();
+		BlockType getCurrentBoxValue(int currentPosition);
 	};
 }
+

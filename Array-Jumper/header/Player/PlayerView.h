@@ -33,5 +33,6 @@ namespace Player
 		void update();
 		void render();
 
-	};
-}
+	};	
+}		
+

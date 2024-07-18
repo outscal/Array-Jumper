@@ -7,10 +7,7 @@ namespace Level
 	{
 		level_controller = new LevelController();
 	}
-	BoxDimensions LevelService::getBoxDimensions()
-	{
-		return level_controller->getBoxDimensions();
-	}
+
 	LevelService::~LevelService() { destroy(); }
 
 	void LevelService::intialize()
@@ -26,6 +23,16 @@ namespace Level
 	void LevelService::render()
 	{
 		level_controller->render();
+	}
+
+	BoxDimensions LevelService::getBoxDimensions()
+	{
+		return level_controller->getBoxDimensions();
+	}
+
+	BlockType LevelService::getCurrentBoxValue(int currentPosition)
+	{
+		return level_controller->getCurrentBoxValue(currentPosition);
 	}
 
 	void LevelService::destroy()

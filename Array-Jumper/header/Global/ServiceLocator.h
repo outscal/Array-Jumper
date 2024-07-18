@@ -4,19 +4,20 @@
 #include "../../header/UI/UIService.h"
 #include "../../header/Sound/SoundService.h"
 #include "../../header/Player/PlayerService.h"
-#include"../../header/Level/LevelService.h"
+#include "../../header/Level/LevelService.h"
 
 namespace Global
 {
     class ServiceLocator
     {
     private:
-        Player::PlayerService* player_service;
         Graphics::GraphicService* graphic_service;
         Event::EventService* event_service;
         Sound::SoundService* sound_service;
         UI::UIService* ui_service;
+        Player::PlayerService* player_service;
         Level::LevelService* level_service;
+
         ~ServiceLocator();
 
         void createServices();
