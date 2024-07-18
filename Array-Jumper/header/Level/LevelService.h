@@ -17,5 +17,6 @@ namespace Level
 		void intialize();
 		void update();
 		void render();
+		
 	};
 }
