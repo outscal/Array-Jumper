@@ -28,7 +28,12 @@ namespace Player
 		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 		loadPlayer();
 	}
-
+	void PlayerView::CalculatePlayerDimensions()
+	{
+		current_box_dimensions = ServiceLocator::getInstance()->getLevelService()->getBoxDimensions();
+		player_height = current_box_dimensions.box_height;
+		player_width = current_box_dimensions.box_width;
+	}
 	void PlayerView::update()
 	{
 		player_image->setPosition(calulcatePlayerPosition());
