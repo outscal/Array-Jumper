@@ -78,7 +78,7 @@ namespace Level
 	}
 	BoxDimensions LevelView::getBoxDimensions()
 	{
-		//return //
+		return box_dimensions;
 	}
 	void LevelView::drawLevel()
 	{
