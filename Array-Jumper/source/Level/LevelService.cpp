@@ -9,7 +9,7 @@ namespace Level
 	}
 	BoxDimensions LevelService::getBoxDimensions()
 	{
-		level_controller->getBoxDimensions();
+		return level_controller->getBoxDimensions();
 	}
 	LevelService::~LevelService() { destroy(); }
 

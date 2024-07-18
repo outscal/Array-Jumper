@@ -43,4 +43,8 @@ namespace Player
 		delete(player_model);
 		delete(player_view);
 	}
+	int PlayerController::getCurrentPosition()
+	{
+		return player_model->getCurrentPosition();
+	}
 }
