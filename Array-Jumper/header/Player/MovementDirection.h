@@ -7,8 +7,5 @@ namespace Player
 		FORWARD,
 		BACKWARD
 	};
-	/*class MovementDirections {
-	private:
-
-	};*/
+	
 }
