@@ -79,10 +79,23 @@ namespace Level
 
 	void LevelView::drawLevel()
 	{
-		box_image->render();
 		background_image->render();
-	}
 
+		drawBox(sf::Vector2f(0, 0));
+		BlockType blockTypeToDraw = level_controller->getCurrentBoxValue();
+		drawBoxValue(sf::Vector2f(0, 0), blockTypeToDraw);
+	}
+	void LevelView::drawBoxValue(sf::Vector2f position, BlockType box_value)
+	{
+		ImageView* image = getBoxOverlayImage(box_value);
+		image->setPosition(position);
+		image->render();
+	}
+	void LevelView::drawBox(sf::Vector2f position)
+	{
+		box_image->setPosition(position);
+		box_image->render();
+	}
 	void LevelView::deleteImages()
 	{
 		delete(background_image);
