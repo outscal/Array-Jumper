@@ -76,7 +76,10 @@ namespace Level
 		obstacle_one_overlay_image->update();
 		obstacle_two_overlay_image->update();
 	}
-
+	BoxDimensions LevelView::getBoxDimensions()
+	{
+		//return //
+	}
 	void LevelView::drawLevel()
 	{
 		background_image->render();

@@ -34,7 +34,7 @@ namespace Level
 		void drawBoxValue(sf::Vector2f position, BlockType box_value);
 		sf::Vector2f calculateBoxPosition(int index);
 	public:
-		
+		BoxDimensions getBoxDimensions();
 		LevelView(LevelController* controller);
 		~LevelView();
 		void calculateBoxWidthHeight();
