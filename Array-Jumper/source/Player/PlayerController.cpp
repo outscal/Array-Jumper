@@ -1,24 +1,23 @@
 #include "../../header/Player/PlayerController.h"
 #include "../../header/Player/PlayerView.h"
 #include "../../header/Player/PlayerModel.h"
-#include"../../header/Global/ServiceLocator.h"
-#include"../../header/Sound/SoundService.h"
-#include"../../header/Event/EventService.h"
+#include "../../header/Global/ServiceLocator.h"
+#include "../../header/Level/LevelModel.h"
+#include "../../header/Sound/SoundService.h"
 
 
 
 namespace Player
 {
-	using namespace Level;
 	using namespace Global;
-	using namespace Sound;
 	using namespace Event;
+	using namespace Level;
+	using namespace Sound;
+
 	PlayerController::PlayerController()
 	{
 		player_model = new PlayerModel();
 		player_view = new PlayerView(this);
-		
-
 	}
 
 	PlayerController::~PlayerController() { destroy(); }
@@ -27,23 +26,16 @@ namespace Player
 	{
 		player_model->initialize();
 		player_view->initialize();
+
 		event_service = ServiceLocator::getInstance()->getEventService();
+
 		resetPlayer();
 	}
-	void PlayerController::readInput()
-	{
-		if (event_service->pressedRightArrowKey() || event_service->pressedDKey())
-		{
-			move(MovementDirection::FORWARD);
-		}
-		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey())
-		{
-			move(MovementDirection::BACKWARD);
-		}
-	}
+
 	void PlayerController::update()
 	{
 		player_view->update();
+		readInput();
 	}
 
 	void PlayerController::render()
@@ -66,6 +58,20 @@ namespace Player
 		return player_model->getCurrentPosition();
 	}
 
+	int PlayerController::getCurrentLives()
+	{
+		return player_model->getCurrentLives();
+	}
+
+	void PlayerController::takeDamage()
+	{
+		player_model->decreamentLife();
+		if (player_model->getCurrentLives() <= 0)
+			onDeath();
+		else
+			player_model->resetPosition();
+	}
+
 
 	void PlayerController::destroy()
 	{
@@ -75,9 +81,28 @@ namespace Player
 
 	void PlayerController::resetPlayer()
 	{
-		player_model->setCurrentPosition(0);
-		player_model->setPlayerState(PlayerState::ALIVE);
+		player_model->resetPlayer();
 	}
+
+	void PlayerController::readInput()
+	{
+		if (event_service->pressedRightArrowKey() || event_service->pressedDKey())
+		{
+			if (event_service->heldSpaceKey())
+				jump(MovementDirection::FORWARD);
+			else
+				move(MovementDirection::FORWARD);
+		}
+		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey())
+		{
+			if (event_service->heldSpaceKey())
+				jump(MovementDirection::BACKWARD);
+			else
+				move(MovementDirection::BACKWARD);
+		}
+
+	}
+
 	void PlayerController::move(MovementDirection direction)
 	{
 		int steps, targetPosition;
@@ -93,7 +118,7 @@ namespace Player
 			steps = 0;
 			break;
 		}
-
+		
 		targetPosition = player_model->getCurrentPosition() + steps;
 
 		if (!isPositionInBound(targetPosition))
@@ -101,11 +126,48 @@ namespace Player
 
 		player_model->setCurrentPosition(targetPosition);
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::MOVE);
+		ServiceLocator::getInstance()->getGameplayService()->onPositionChanged(targetPosition);
 	}
+
+	void PlayerController::jump(MovementDirection direction)
+	{
+		int current_position = player_model->getCurrentPosition();
+		BlockType box_value = ServiceLocator::getInstance()->getLevelService()->getCurrentBoxValue(current_position);
+		int steps, targetPosition;
+
+		switch (direction)
+		{
+		case MovementDirection::FORWARD:
+			steps = box_value;
+			break;
+		case MovementDirection::BACKWARD:
+			steps = -box_value;
+			break;
+		default:
+			steps = 0;
+			break;
+		}
+
+		targetPosition = current_position + steps;
+
+		if (!isPositionInBound(targetPosition))
+			return;
+
+		player_model->setCurrentPosition(targetPosition);
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::JUMP);
+		ServiceLocator::getInstance()->getGameplayService()->onPositionChanged(targetPosition);
+	}
+
 	bool PlayerController::isPositionInBound(int targetPosition)
 	{
-		if (targetPosition >= 0 && targetPosition < LevelData::NUMBER_OF_BOXES)
+		if(targetPosition >= 0 && targetPosition < LevelData::NUMBER_OF_BOXES)
 			return true;
 		return false;
+	}
+
+	void PlayerController::onDeath()
+	{
+		ServiceLocator::getInstance()->getGameplayService()->onDeath();
+		player_model->resetPlayer();
 	}
 }
