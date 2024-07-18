@@ -3,6 +3,7 @@
 namespace Global
 {
     // Textures
+    const sf::String Config::target_path = "assets/textures/target.png";
     const sf::String Config::array_jumper_bg_texture_path = "assets/textures/array_jumper_bg.png";
     const sf::String Config::box_texture_path = "assets/textures/box.png";
     const sf::String Config::character_texture_path = "assets/textures/character.png";
