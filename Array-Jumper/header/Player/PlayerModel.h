@@ -8,13 +8,15 @@ namespace Player
 		DEAD,
 	};
 
-	class playerModel
+	class PlayerModel
 	{
 	private:
 		int currentPosition;
 		PlayerState playerState;
 
 	public:
+		PlayerModel();
+		~PlayerModel();
 
 		void SetPlayerState(PlayerState state);
 		PlayerState GetPlayerState();

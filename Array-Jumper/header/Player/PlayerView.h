@@ -3,11 +3,14 @@
 
 namespace Player
 {
+	class PlayerController;
+
 	class PlayerView
 	{
 	private:
 		sf::RenderWindow* gameWindow;
 		UI::UIElement::ImageView* playerImage;
+		PlayerController* playerController;
 
 		float playerHeight;
 		float playerWidth;
@@ -20,7 +23,7 @@ namespace Player
 		sf::Vector2f calculatePlayerPosition();
 
 	public:
-		PlayerView();
+		PlayerView(PlayerController* controller);
 		~PlayerView();
 
 		void Initialize();
