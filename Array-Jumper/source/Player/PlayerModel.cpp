@@ -5,6 +5,7 @@ namespace Player
 	PlayerModel::PlayerModel()
 	{
 		playerState = PlayerState::ALIVE;
+		currentPosition = 0;
 	}
 	PlayerModel::~PlayerModel()
 	{

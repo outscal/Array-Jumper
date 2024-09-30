@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace Player
 {
 	class PlayerView;
@@ -23,5 +24,7 @@ namespace Player
 
 		PlayerState getPlayerState();
 		void setPlayerState(PlayerState state);
+
+		int GetCurrentPosition();
 	};
 }

@@ -1,6 +1,7 @@
 #include "../../header/Level/LevelService.h"
 #include "../../header/Level/LevelController.h"
 
+
 namespace Level
 {
 	LevelService::LevelService()
@@ -28,5 +29,10 @@ namespace Level
 	void LevelService::Render()
 	{
 		levelController->Render();
+	}
+
+	BoxDimensions LevelService::GetBoxDimension()
+	{
+		return levelController->GetBoxDimensions();
 	}
 }

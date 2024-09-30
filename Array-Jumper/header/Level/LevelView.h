@@ -54,5 +54,7 @@ namespace Level
 		void Update();
 		void Render();
 
+		BoxDimensions GetBoxDimesnion();	
+
 	};
 }

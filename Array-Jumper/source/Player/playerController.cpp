@@ -45,4 +45,9 @@ namespace Player
 	{
 		playerModel->SetPlayerState(state);
 	}
+
+	int PlayerController::GetCurrentPosition()
+	{
+		return playerModel->GetCurrentPosition();;
+	}
 }

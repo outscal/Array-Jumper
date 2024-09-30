@@ -1,8 +1,10 @@
 #pragma once
 
+
 namespace Level
 {
 	class LevelController;
+	struct BoxDimensions;
 	class LevelService
 	{
 	private:
@@ -17,5 +19,7 @@ namespace Level
 		void Initialize();
 		void Update();
 		void Render();
+
+		BoxDimensions GetBoxDimension();
 	};
 }

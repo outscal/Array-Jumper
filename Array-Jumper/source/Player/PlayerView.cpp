@@ -8,6 +8,7 @@ namespace Player
 {
 	using namespace UI::UIElement;
 	using namespace Global;
+	using namespace Level;
 
 	PlayerView::PlayerView(PlayerController* controller)
 	{
@@ -36,9 +37,9 @@ namespace Player
 	void PlayerView::Update()
 	{
 		UpdatePlayerPosition();
-		
+
 	}
-	
+
 	void PlayerView::Render()
 	{
 		switch (playerController->getPlayerState())
@@ -64,8 +65,11 @@ namespace Player
 
 	void PlayerView::calculatePlayerDimensions()
 	{
-		playerWidth = 1000.f;
-		playerHeight = 1000.f;
+
+		currentBoxDimensions = ServiceLocator::getInstance()->GetLevelService()->GetBoxDimension();
+
+		playerWidth = currentBoxDimensions.boxWidth;
+		playerHeight = currentBoxDimensions.boxHeight;
 	}
 
 	void PlayerView::UpdatePlayerPosition()
@@ -75,7 +79,15 @@ namespace Player
 
 	sf::Vector2f PlayerView::calculatePlayerPosition()
 	{
-		return sf::Vector2f(0, 0);
+		//printf("spacing = %d", playerController->GetCurrentPosition());
+
+		float xPosition = currentBoxDimensions.boxSpacing + static_cast<float>(playerController->GetCurrentPosition()) *
+			(currentBoxDimensions.boxWidth + currentBoxDimensions.boxSpacing);
+		
+		float yPosition = static_cast<float>(gameWindow->getSize().y) - currentBoxDimensions.boxHeight
+			- currentBoxDimensions.bottomOffset - playerHeight;
+
+		return sf::Vector2f(xPosition, yPosition);
 
 	}
 }
