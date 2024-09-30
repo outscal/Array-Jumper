@@ -27,7 +27,7 @@ namespace Level
 	{
 		levelView->Render();
 	}
-
+	
 	BlockType LevelController::GetCurrentBoxValue(int currentPosition)
 	{
 		return levelModel->GetCurrentBoxValue(currentPosition);

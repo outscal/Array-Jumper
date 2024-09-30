@@ -74,15 +74,7 @@ namespace Level
 		obstacle_one_overlay_image->update();
 		obstacle_two_overlay_image->update();
 	}
-	void LevelView::DrawLevel()
-	{
-		backgroundImage->render();
-		DrawBox(sf::Vector2f(0, 0));
 
-		BlockType blockTypeToDraw = levelController->GetCurrentBoxValue(0);
-		DrawBoxValue(sf::Vector2f(0, 0), blockTypeToDraw);
-
-	}
 	void LevelView::DeleteImages()
 	{
 		delete(backgroundImage);
@@ -94,12 +86,56 @@ namespace Level
 		delete(obstacle_one_overlay_image);
 		delete(obstacle_two_overlay_image);
 	}
+
+	void LevelView::DrawLevel()
+	{
+		backgroundImage->render();
+
+		for (int i = 0;i < LevelData::numberOfBoxes;i++)
+		{
+			sf::Vector2f position = calculateBoxPosition(i);
+			BlockType blockTypeToDraw = levelController->GetCurrentBoxValue(i);
+			DrawBox(position);
+			DrawBoxValue(position, blockTypeToDraw);
+		}
+
+
+	}
 	void LevelView::CalculateBoxDimensions()
 	{
 		if (gameWindow == nullptr)return;
 
-		boxDimensions.boxWidth = 300.f;
-		boxDimensions.boxHeight = 300.f;
+		CalculateBoxWidthHeight();
+		CalculateBoxSpacing();
+	}
+
+	void LevelView::CalculateBoxWidthHeight()
+	{
+		float screenWidth = static_cast<float>(gameWindow->getSize().x);
+
+		int numBoxes = LevelData::numberOfBoxes;
+
+		int numGaps = numBoxes + 1;
+
+		float totalSpaceByGaps = boxDimensions.boxSpacingPercentage * static_cast<float>(numGaps);
+
+		float totalSpace = numBoxes + totalSpaceByGaps;
+
+		boxDimensions.boxWidth = screenWidth / (totalSpace);
+		boxDimensions.boxHeight = boxDimensions.boxWidth;
+	}
+
+	void LevelView::CalculateBoxSpacing()
+	{
+		boxDimensions.boxSpacing = boxDimensions.boxSpacingPercentage * boxDimensions.boxWidth;
+	}
+
+	sf::Vector2f LevelView::calculateBoxPosition(int index)
+	{
+		float xPosition = boxDimensions.boxSpacing + static_cast<float>(index) * (boxDimensions.boxWidth + boxDimensions.boxSpacing);
+		float yPosition = static_cast<float>(gameWindow->getSize().y) - boxDimensions.boxHeight - boxDimensions.bottomOffset;
+
+		return sf::Vector2f(xPosition, yPosition);
 	}
 
 	ImageView* LevelView::GetBoxOverlayImage(BlockType type)
@@ -135,7 +171,7 @@ namespace Level
 		boxImage->setPosition(position);
 		boxImage->render();
 
-		
+
 	}
 
 	void LevelView::DrawBoxValue(sf::Vector2f position, BlockType type)
