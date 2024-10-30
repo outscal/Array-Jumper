@@ -1,12 +1,15 @@
 #include "../../header/Player/PlayerView.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Player/PlayerController.h"
+#include "../../header/Player/PlayerModel.h"
 namespace Player
 {
 	using namespace Global;
 
-	Player::PlayerView::PlayerView()
+	Player::PlayerView::PlayerView(PlayerController* controller)
 	{
+		player_controller = controller;
 		game_window = nullptr;
 		player_image = new UI::UIElement::ImageView();
 	}
@@ -24,7 +27,13 @@ namespace Player
 	}
 	void PlayerView::render()
 	{
-		drawPlayer();
+		switch (player_controller->getPlayerState())
+		{
+		case PlayerState::ALIVE:
+			drawPlayer();
+		default:
+			break;
+		}
 	}
 	void PlayerView::initializePlayerImage()
 	{
