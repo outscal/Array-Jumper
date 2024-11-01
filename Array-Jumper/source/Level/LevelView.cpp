@@ -2,6 +2,7 @@
 #include "../../header/Level/LevelController.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Global/ServiceLocator.h"
+#include <iostream>
 namespace Level
 {
 	using namespace Global;
@@ -20,6 +21,7 @@ namespace Level
 	void LevelView::initilaize()
 	{
 		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+		calcuateBoxDimension();
 		initilizeImage();
 	}
 	void LevelView::update()
@@ -30,12 +32,38 @@ namespace Level
 	{
 		drawImage();
 	}
+	void LevelView::calculateBoxWidthHeightDimension()
+	{
+		float screenWidth = static_cast<float>(game_window->getSize().x);
+		int numBoxes = LevelData::number_of_box;
+
+		//Each Box has a Gap on it's left, 1 extra gap for last block's right side
+		int numGaps = numBoxes + 1;
+
+		//Total space consumed by all gaps
+		float totalSpaceByGaps = box_dimension.box_spacing_percentage * static_cast<float>(numGaps);
+
+		//Total space consumed by boxes and gaps
+		float totalSpace = numBoxes + totalSpaceByGaps;
+
+		box_dimension.box_width = screenWidth / (totalSpace);
+		box_dimension.box_height = box_dimension.box_width;
+	}
+	void LevelView::calculateBoxSpacing()
+	{
+		box_dimension.box_spacing = box_dimension.box_spacing_percentage * box_dimension.box_width;
+	}
 	void LevelView::calcuateBoxDimension()
 	{
 		if (!game_window) return;
-
-		box_dimension.box_width = 300.f;
-		box_dimension.box_height = 300.f;
+		calculateBoxWidthHeightDimension();
+		calculateBoxSpacing();
+	}
+	sf::Vector2f LevelView::calculateBoxPosition(int index)
+	{
+		float xPosition = box_dimension.box_spacing + static_cast<float>(index) * (box_dimension.box_width + box_dimension.box_spacing);
+		float yPosition = static_cast<float>(game_window->getSize().y) - box_dimension.box_height - box_dimension.bottom_offset;
+		return sf::Vector2f(xPosition, yPosition);
 	}
 	ImageView* LevelView::getBoxImage(BlockType type)
 	{
@@ -112,9 +140,14 @@ namespace Level
 	void LevelView::drawImage()
 	{
 		background_image->render();
-		drawBox(sf::Vector2f(0, 0));
-		BlockType blockTypeToDraw = level_controller->getCurrentBoxValue(0);
-		drawBoxValue(sf::Vector2f(0, 0), blockTypeToDraw);
+
+		for (int i = 0; i < LevelData::number_of_box; i++)
+		{
+			sf::Vector2f positon = calculateBoxPosition(i);
+			BlockType blockTypeToDraw = level_controller->getCurrentBoxValue(i);
+			drawBox(positon);
+			drawBoxValue(positon, blockTypeToDraw);
+		}
 	
 	}
 	void LevelView::deleteImage()

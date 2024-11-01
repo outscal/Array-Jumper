@@ -14,7 +14,10 @@ namespace Level
 		void update();
 		void render();
 
+		void calculateBoxWidthHeightDimension();
+		void calculateBoxSpacing();
 		void calcuateBoxDimension();
+		sf::Vector2f calculateBoxPosition(int index);
 		UI::UIElement::ImageView* getBoxImage(BlockType type);
 
 		void drawBox(sf::Vector2f position);
