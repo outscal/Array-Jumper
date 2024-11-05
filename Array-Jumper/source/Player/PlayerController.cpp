@@ -5,6 +5,7 @@
 #include "../../header/Level/LevelData.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Global/Config.h"
+#include "../../header/Sound/SoundService.h"
 
 namespace Player
 {
@@ -23,10 +24,10 @@ namespace Player
 	}
 	void PlayerController::initialize()
 	{
-		
+
 		player_view->initialize();
 		event_service = ServiceLocator::getInstance()->getEventService();
-		
+
 	}
 	void PlayerController::update()
 	{
@@ -45,8 +46,7 @@ namespace Player
 	{
 		player_model->setPlayerState(state);
 	}
-<<<<<<< Updated upstream
-=======
+
 	int PlayerController::getCurrentPosition()
 	{
 		return player_model->getPosition();
@@ -78,7 +78,7 @@ namespace Player
 		}
 
 		player_model->setPosition(targetPosition);
-        ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::MOVE);
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::MOVE);
 	}
 
 	bool PlayerController::isPositionValid(int targetPosition)
@@ -93,7 +93,7 @@ namespace Player
 		}
 	}
 
-    void PlayerController::readInput()
+	void PlayerController::readInput()
 	{
 		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey())
 		{
@@ -103,9 +103,7 @@ namespace Player
 		{
 			movePlayer(MovementDirection::FORWARD);
 		}
-	
-    }
 
-	
->>>>>>> Stashed changes
+	}
+
 }

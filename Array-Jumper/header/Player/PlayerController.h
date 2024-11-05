@@ -1,4 +1,5 @@
 #pragma once
+#include "../../header/Event/EventService.h"
 namespace Player
 {
 	class PlayerModel;
@@ -25,7 +26,8 @@ namespace Player
 		bool isPositionValid(int targetPosition);
 
 		void readInput();
-
+		
+		int getCurrentPosition();
 	private:
 		PlayerModel* player_model;
 		PlayerView* player_view;
