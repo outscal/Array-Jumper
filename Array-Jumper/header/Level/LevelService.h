@@ -1,8 +1,10 @@
 #pragma once
+#include "BlockType.h"
 namespace Level
 {
 	struct BoxDimension;
 	class LevelController;
+	class BoxType;
 	class LevelService
 	{
 	public:
@@ -14,6 +16,7 @@ namespace Level
 		void render();
 
 		BoxDimension getBoxDimension();
+		BlockType getCurrentBoxValue(int currentPosition);
 
 	private:
 		LevelController* level_controller;

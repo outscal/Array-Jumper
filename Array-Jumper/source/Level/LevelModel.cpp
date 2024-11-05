@@ -8,8 +8,8 @@ namespace Level
 	LevelModel::~LevelModel()
 	{
 	}
-	BlockType LevelModel::getCurrentBoxValue(int currentPosion)
+	BlockType LevelModel::getCurrentBoxValue(int currentPosition)
 	{
-		return current_level_data.level_boxes[currentPosion];
+		return current_level_data.level_boxes[currentPosition];
 	}
 }

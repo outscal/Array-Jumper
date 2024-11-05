@@ -15,7 +15,7 @@ namespace Level
 		void update();
 		void render();
 
-		BlockType getCurrentBoxValue(int currentPosion);
+		BlockType getCurrentBoxValue(int currenPosition);
 		BoxDimension getBoxDimension();
 
 	private:

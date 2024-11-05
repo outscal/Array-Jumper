@@ -6,6 +6,8 @@
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Sound/SoundService.h"
+#include "../../header/Level/BlockType.h"
+#include <iostream>
 
 namespace Player
 {
@@ -31,6 +33,7 @@ namespace Player
 	}
 	void PlayerController::update()
 	{
+		readInput();
 		player_view->update();
 
 	}
@@ -81,6 +84,31 @@ namespace Player
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::MOVE);
 	}
 
+    void PlayerController::jump(MovementDirection direction)
+    {
+        int currentPosition = player_model->getPosition();
+        BlockType box_value = ServiceLocator::getInstance()->getLevelService()->getCurrentBoxValue(currentPosition);
+        int steps, targetPosition;
+        switch (direction)
+        {
+        case Player::MovementDirection::FORWARD:
+            steps = static_cast<int>(box_value); 
+            break;
+        case Player::MovementDirection::BACKWARD:
+            steps = -static_cast<int>(box_value); 
+            break;
+        default:
+            steps = 0;
+            break;
+        }
+        targetPosition = currentPosition + steps;
+        if (isPositionValid(targetPosition))
+        {
+            player_model->setPosition(targetPosition);
+            ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::JUMP);
+        }
+    }
+
 	bool PlayerController::isPositionValid(int targetPosition)
 	{
 		if (targetPosition >= 0 && targetPosition < Level::LevelData::number_of_box)
@@ -97,11 +125,25 @@ namespace Player
 	{
 		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey())
 		{
-			movePlayer(MovementDirection::BACKWARD);
+			if (event_service->heldSpaceKey())
+			{
+				jump(MovementDirection::BACKWARD);
+			}
+			else
+			{
+				movePlayer(MovementDirection::BACKWARD);
+			}
 		}
 		else if (event_service->pressedRightArrowKey() || event_service->pressedDKey())
 		{
-			movePlayer(MovementDirection::FORWARD);
+			if (event_service->heldSpaceKey())
+			{
+				jump(MovementDirection::FORWARD);
+			}
+			else
+			{
+				movePlayer(MovementDirection::FORWARD);
+			}
 		}
 
 	}

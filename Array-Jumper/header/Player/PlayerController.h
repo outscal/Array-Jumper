@@ -23,11 +23,13 @@ namespace Player
 
 
 		void movePlayer(MovementDirection direction);
+		void jump(MovementDirection direction);
 		bool isPositionValid(int targetPosition);
 
 		void readInput();
 		
 		int getCurrentPosition();
+		
 	private:
 		PlayerModel* player_model;
 		PlayerView* player_view;

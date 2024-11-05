@@ -19,7 +19,7 @@ namespace Level
 		LevelModel();
 		~LevelModel();
 
-		BlockType getCurrentBoxValue(int currentPosion);
+		BlockType getCurrentBoxValue(int currentPosition);
 
 	private:
 		LevelData current_level_data;
