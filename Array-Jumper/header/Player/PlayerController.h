@@ -17,6 +17,7 @@ namespace Player
 
 		PlayerState getPlayerState();
 		void setPlayerState(PlayerState state);
+		int getCurrentPosition();
 
 	private:
 		PlayerModel* player_model;

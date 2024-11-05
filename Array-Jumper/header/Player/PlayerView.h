@@ -17,6 +17,7 @@ namespace Player
 		void render();
 
 		BoxDimension current_box_dimensions;
+		
 	
 	private:
 		UI::UIElement::ImageView* player_image;
