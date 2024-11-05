@@ -23,6 +23,8 @@ namespace Level
 		void drawBox(sf::Vector2f position);
 		void drawBoxValue(sf::Vector2f position, BlockType type);
 
+		BoxDimension getBoxDimension();
+
 
 
 	private:

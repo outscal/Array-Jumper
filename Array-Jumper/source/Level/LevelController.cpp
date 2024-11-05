@@ -1,5 +1,4 @@
 #include "../../header/Level/LevelController.h"
-#include "../../header/Level/LevelModel.h"
 #include "../../header/Level/LevelView.h"
 namespace Level
 {
@@ -29,5 +28,9 @@ namespace Level
 	BlockType LevelController::getCurrentBoxValue(int currentPosion)
 	{
 		return level_model->getCurrentBoxValue(currentPosion);
+	}
+	BoxDimension LevelController::getBoxDimension()
+	{
+		return level_view->getBoxDimension();
 	}
 }

@@ -100,6 +100,10 @@ namespace Level
 		image->setPosition(position);
 		image->render();
 	}
+	BoxDimension LevelView::getBoxDimension()
+	{
+		return	box_dimension;
+	}
 	void LevelView::createImage()
 	{
 		background_image = new ImageView();
