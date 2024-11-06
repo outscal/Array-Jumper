@@ -55,6 +55,11 @@ namespace Player
 		return player_model->getPosition();
 	}
 
+	void PlayerController::takeDamage()
+	{
+		player_model->resetPlayer();
+	}
+
 	void PlayerController::movePlayer(MovementDirection direction)
 	{
 		int steps, targetPosition;

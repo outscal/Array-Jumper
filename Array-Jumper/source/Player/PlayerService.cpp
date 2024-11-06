@@ -22,4 +22,12 @@ namespace Player
 	{
 		player_conroller->render();
 	}
+	void PlayerService::takeDamage()
+	{
+		player_conroller->takeDamage();
+	}
+	int PlayerService::getCurrentPosition()
+	{
+		return player_conroller->getCurrentPosition();
+	}
 }

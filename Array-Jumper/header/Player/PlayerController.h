@@ -29,7 +29,7 @@ namespace Player
 		void readInput();
 		
 		int getCurrentPosition();
-		
+		void takeDamage();
 	private:
 		PlayerModel* player_model;
 		PlayerView* player_view;

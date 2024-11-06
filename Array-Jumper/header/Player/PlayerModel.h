@@ -16,6 +16,8 @@ namespace Player
 
 		PlayerState getPlayerState();
 		void setPlayerState(PlayerState state);
+
+		void resetPlayer();
 	private:
 		int current_position;
 		PlayerState player_state;

@@ -12,6 +12,9 @@ namespace Player
 		void update();
 		void render();
 
+		void takeDamage();
+		int getCurrentPosition();
+
 	private:
 		PlayerController* player_conroller;
 	};
