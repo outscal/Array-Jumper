@@ -41,10 +41,11 @@ namespace Level
 	{
 		level_model->nextLevel();
 	}
-	void LevelController::getCurrentLevelIndex()
+	int LevelController::getCurrentLevelIndex()
 	{
-		level_model->getCurrentLevelIndex();
+		return level_model->getCurrentLevelIndex();
 	}
+
 	void LevelController::reset()
 	{
 		level_model->reset();

@@ -17,6 +17,10 @@ namespace Level
 
 		BoxDimension getBoxDimension();
 		BlockType getCurrentBoxValue(int currentPosition);
+		bool isLastLevel();
+		void nextLevel();
+		int getCurrentLevelIndex();
+		void reset();
 
 	private:
 		LevelController* level_controller;

@@ -1,4 +1,5 @@
 #include "../../header/Level/LevelModel.h"
+#include <iostream>
 
 namespace Level
 {
@@ -10,6 +11,7 @@ namespace Level
 	}
 	BlockType LevelModel::getCurrentBoxValue(int currentPosition)
 	{
+		std::cout << currentPosition << std::endl;
 		return level_configuration.levels[currentPosition].level_boxes[currentPosition];
 	}
 	void LevelModel::nextLevel()

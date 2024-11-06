@@ -14,7 +14,9 @@ namespace GamePlay
 		void update();
 		void render();
 		void onDeath();
-
+		void gameWon();
+		void loadNextLevel();
+		bool isLastLevel();
 
 	private:
 		void processObstacle();

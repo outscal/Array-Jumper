@@ -119,6 +119,7 @@ namespace Level
 	}
 	void LevelView::initilizeImage()
 	{
+
 		background_image->initialize(Config::array_jumper_bg_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
 		background_image->setImageAlpha(background_alpha);
 

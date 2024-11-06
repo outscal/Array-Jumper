@@ -20,9 +20,10 @@ namespace GamePlayUI
 		const float right_offset = 250.f;
 
 		UI::UIElement::TextView* m_liveTextView;
-		void createLiveTextView();
-		void initializeLiveTextView();
-		void updateLiveTextView();
+		UI::UIElement::TextView* m_levelTextView;
+		void createTextView();
+		void initializeTextView();
+		void updateTextView();
 
 	};
 
