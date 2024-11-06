@@ -16,6 +16,7 @@ namespace Main
 		GAMEPLAY,
 		INSTRUCTIONS,
 		CREDITS,
+		GAMEOVER
 	};
 
 	class GameService

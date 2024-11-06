@@ -5,9 +5,12 @@
 #include "../../header/UI/MainMenu/MainMenuUIController.h"
 #include "../../header/UI/Instructions/InstructionsUIController.h"
 #include "../../header/UI/Credits/CreditsScreenUIController.h"
+#include "../../header/UI/GamePlay/GameplayUIController.h"
+#include "../../header/UI/GameOver/GameOverController.h"
 
 namespace UI
 {
+	
 
 	class UIService
 	{
@@ -16,6 +19,8 @@ namespace UI
 		MainMenu::MainMenuUIController* main_menu_ui_controller;
 		Credits::CreditsScreenUIController* credits_screen_ui_controller;
 		Instructions::InstructionsUIController* instructions_ui_controller;
+		GamePlayUI::GameplayUIController* gameplay_ui_controller;
+		GameOverUI::GameOverController* gameover_ui_controller;
 
 
 		void createControllers();

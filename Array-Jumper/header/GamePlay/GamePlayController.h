@@ -1,0 +1,31 @@
+#pragma once
+#include "../../header/Level/BlockType.h"
+
+namespace GamePlay
+{
+
+	class GamePlayController
+	{
+	public:
+		GamePlayController();
+		~GamePlayController();
+
+		void initialize();
+		void update();
+		void render();
+		void onDeath();
+		void gameWon();
+		void loadNextLevel();
+		bool isLastLevel();
+
+	private:
+		void processObstacle();
+		bool isCollidingWithObstacle(BlockType value);
+		void onPositionChanged(int position);
+		bool isEndBlock(BlockType value);
+		void processEndBlock();
+		void gameOver();
+	};
+
+
+}
