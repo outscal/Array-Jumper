@@ -30,6 +30,7 @@ namespace Player
 		
 		int getCurrentPosition();
 		void takeDamage();
+		void levelComplete();
 
 		int getCurrentLives();
 		void onDeath();

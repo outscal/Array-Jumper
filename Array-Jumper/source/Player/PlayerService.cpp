@@ -32,7 +32,7 @@ namespace Player
 	}
 	void PlayerService::levelComplete()
 	{
-		player_conroller->takeDamage();
+		player_conroller->levelComplete();
 	}
 	int PlayerService::getCurrentLives()
 	{

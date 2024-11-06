@@ -1,5 +1,6 @@
 #include "../../header/UI/GamePlay/GameplayUIController.h"
 #include "../../header/Global/ServiceLocator.h"
+#include <iostream>
 
 namespace GamePlayUI
 {
@@ -25,6 +26,7 @@ namespace GamePlayUI
 	void GameplayUIController::render()
 	{
 		m_liveTextView->render();
+		m_levelTextView->render();
 	}
 	void GameplayUIController::createTextView()
 	{
@@ -34,10 +36,12 @@ namespace GamePlayUI
 	void GameplayUIController::initializeTextView()
 	{
 		float window_width = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize().x;
-		float x_position = window_width - right_offset;
+		std::cout << window_width <<std::endl;
+		float x_position_live = window_width - right_offset;
+		float x_position_level = left_offset;
 		float y_position = top_offset;
-		m_liveTextView->initialize("0", sf::Vector2f(x_position, y_position), UI::UIElement::FontType::BUBBLE_BOBBLE, font_size, sf::Color::White);
-		m_levelTextView->initialize("0", sf::Vector2f(left_offset, y_position), UI::UIElement::FontType::BUBBLE_BOBBLE, font_size, sf::Color::White);
+		m_liveTextView->initialize("0", sf::Vector2f(x_position_live, y_position), UI::UIElement::FontType::BUBBLE_BOBBLE, font_size, sf::Color::White);
+		m_levelTextView->initialize("0", sf::Vector2f(x_position_level, y_position), UI::UIElement::FontType::BUBBLE_BOBBLE, font_size, sf::Color::White);
 	}
 	void GameplayUIController::updateTextView()
 	{

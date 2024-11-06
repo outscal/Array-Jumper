@@ -16,7 +16,7 @@ namespace GamePlayUI
 		float font_size = 55;
 
 		const float top_offset = 100.f;
-		const float left_offset = 100.f;
+		const float left_offset = 150.f;
 		const float right_offset = 250.f;
 
 		UI::UIElement::TextView* m_liveTextView;

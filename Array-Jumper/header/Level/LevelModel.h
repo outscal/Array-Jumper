@@ -27,7 +27,6 @@ namespace Level
 		void reset();
 
 	private:
-		const int number_of_levels = LevelConfiguration::number_of_levels;
 		int current_level_index = 0;
 		LevelConfiguration level_configuration;
 	};

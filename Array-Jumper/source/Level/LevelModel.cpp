@@ -12,7 +12,7 @@ namespace Level
 	BlockType LevelModel::getCurrentBoxValue(int currentPosition)
 	{
 		std::cout << currentPosition << std::endl;
-		return level_configuration.levels[currentPosition].level_boxes[currentPosition];
+		return level_configuration.levels[current_level_index].level_boxes[currentPosition];
 	}
 	void LevelModel::nextLevel()
 	{
