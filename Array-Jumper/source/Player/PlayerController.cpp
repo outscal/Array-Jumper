@@ -7,6 +7,7 @@
 #include "../../header/Global/Config.h"
 #include "../../header/Sound/SoundService.h"
 #include "../../header/Level/BlockType.h"
+#include "../../header/GamePlay/GamePlayService.h"
 #include <iostream>
 
 namespace Player
@@ -26,7 +27,7 @@ namespace Player
 	}
 	void PlayerController::initialize()
 	{
-
+		player_model->initialize();
 		player_view->initialize();
 		event_service = ServiceLocator::getInstance()->getEventService();
 
@@ -57,6 +58,27 @@ namespace Player
 
 	void PlayerController::takeDamage()
 	{
+		player_model->decrementLife();
+
+		if (player_model->getCurrentLives() <= 0)
+		{
+			onDeath();
+		}
+		else
+		{
+			player_model->resetPositon();
+
+		}
+	}
+
+	int PlayerController::getCurrentLives()
+	{
+		return player_model->getCurrentLives();
+	}
+
+	void PlayerController::onDeath()
+	{
+		ServiceLocator::getInstance()->getGamePlayService()->onDeath();
 		player_model->resetPlayer();
 	}
 

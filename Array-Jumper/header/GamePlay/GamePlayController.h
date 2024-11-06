@@ -13,6 +13,8 @@ namespace GamePlay
 		void initialize();
 		void update();
 		void render();
+		void onDeath();
+
 
 	private:
 		void processObstacle();
@@ -20,6 +22,7 @@ namespace GamePlay
 		void onPositionChanged(int position);
 		bool isEndBlock(BlockType value);
 		void processEndBlock();
+		void gameOver();
 	};
 
 

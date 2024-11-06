@@ -16,6 +16,9 @@ namespace Player
 		int getCurrentPosition();
 		void levelComplete();
 
+		int getCurrentLives();
+		void onDeath();
+
 	private:
 		PlayerController* player_conroller;
 	};

@@ -34,4 +34,13 @@ namespace Player
 	{
 		player_conroller->takeDamage();
 	}
+	int PlayerService::getCurrentLives()
+	{
+		return player_conroller->getCurrentLives();
+	}
+	void PlayerService::onDeath()
+	{
+		
+		player_conroller->onDeath();
+	}
 }

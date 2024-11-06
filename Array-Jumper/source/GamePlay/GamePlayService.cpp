@@ -25,4 +25,9 @@ namespace GamePlay
 		m_gamePlayController->render();
 	}
 
+	void GamePlayService::onDeath()
+	{
+		m_gamePlayController->onDeath();
+	}
+
 }

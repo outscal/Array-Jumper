@@ -13,7 +13,8 @@ namespace GamePlay
 		void update();
 		void render();
 
-		
+		void onDeath();
+
 
 	private:
 		GamePlayController* m_gamePlayController;

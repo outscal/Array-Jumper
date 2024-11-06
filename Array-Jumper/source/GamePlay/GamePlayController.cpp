@@ -74,3 +74,14 @@ void GamePlay::GamePlayController::processEndBlock()
 	ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::LEVEL_COMPLETE);
 	ServiceLocator::getInstance()->getPlayerService()->levelComplete();
 }
+
+void GamePlay::GamePlayController::gameOver()
+{
+	GameService::setGameState(GameState::CREDITS);
+	ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
+}
+
+void GamePlay::GamePlayController::onDeath()
+{
+	gameOver();
+}

@@ -30,6 +30,9 @@ namespace Player
 		
 		int getCurrentPosition();
 		void takeDamage();
+
+		int getCurrentLives();
+		void onDeath();
 	private:
 		PlayerModel* player_model;
 		PlayerView* player_view;
