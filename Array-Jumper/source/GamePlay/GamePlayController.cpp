@@ -83,7 +83,7 @@ void GamePlay::GamePlayController::processEndBlock()
 
 void GamePlay::GamePlayController::gameOver()
 {
-	GameService::setGameState(GameState::CREDITS);
+	GameService::setGameState(GameState::GAMEOVER);
 	ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
 }
 

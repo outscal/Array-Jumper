@@ -6,18 +6,17 @@
 
 namespace UI
 {
-	namespace Credits
+	namespace GameOverUI
 	{
-
-		class CreditsScreenUIController
+		class GameOverController
 		{
 		private:
 
 			// Constants:
 			const sf::String game_title = "Outscal Presents - Array Jumper";
-			const sf::String won_text = "Game Won";
+			const sf::String game_over_text = "Game Over";
 			const float background_alpha = 85.f;
-			
+
 			const float text_top_offset = 260.f;
 			const int font_size = 110;
 			const sf::Color text_color = sf::Color::White;
@@ -28,11 +27,11 @@ namespace UI
 			const float quit_button_y_position = 800.f;
 
 			// UI Elements:
-			UIElement::ImageView* background_image;
-			UIElement::TextView* title_text;
-			UIElement::ButtonView* menu_button;
-			UIElement::ButtonView* quit_button;
-			UIElement::TextView* won_textView;
+			UI::UIElement::ImageView* background_image;
+			UI::UIElement::TextView* title_text;
+			UI::UIElement::TextView* gameover_text;
+			UI::UIElement::ButtonView* menu_button;
+			UI::UIElement::ButtonView* quit_button;
 
 			void createText();
 			void createImage();
@@ -50,13 +49,15 @@ namespace UI
 			void destroy();
 
 		public:
-			CreditsScreenUIController();
-			~CreditsScreenUIController();
+			GameOverController();
+			~GameOverController();
 
 			void initialize();
 			void update();
 			void render();
 			void show();
 		};
+
+
 	}
 }
