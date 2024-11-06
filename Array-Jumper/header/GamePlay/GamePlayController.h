@@ -18,6 +18,8 @@ namespace GamePlay
 		void processObstacle();
 		bool isCollidingWithObstacle(BlockType value);
 		void onPositionChanged(int position);
+		bool isEndBlock(BlockType value);
+		void processEndBlock();
 	};
 
 

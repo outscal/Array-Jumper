@@ -14,6 +14,7 @@ namespace Player
 
 		void takeDamage();
 		int getCurrentPosition();
+		void levelComplete();
 
 	private:
 		PlayerController* player_conroller;

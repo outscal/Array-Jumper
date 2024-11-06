@@ -133,8 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="header\GamePlay\GamePlayController.cpp" />
-    <ClCompile Include="source\GamePlay\GamePlayConroller.cpp" />
+    <ClCompile Include="source\GamePlay\GamePlayController.cpp" />
     <ClCompile Include="source\GamePlay\GamePlayService.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Event\EventService.cpp" />

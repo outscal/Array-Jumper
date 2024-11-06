@@ -30,4 +30,8 @@ namespace Player
 	{
 		return player_conroller->getCurrentPosition();
 	}
+	void PlayerService::levelComplete()
+	{
+		player_conroller->takeDamage();
+	}
 }

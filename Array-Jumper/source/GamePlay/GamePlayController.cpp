@@ -1,11 +1,13 @@
-#include "GamePlayController.h"
+#include "../../header/GamePlay/GamePlayController.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Sound/SoundService.h"
 #include "../../header/Level/LevelService.h"
+#include "../../header/Main/GameService.h"
 
 using namespace Global;
 using namespace Sound;
 using namespace Level;
+using namespace Main;
 
 
 GamePlay::GamePlayController::GamePlayController()
@@ -51,4 +53,24 @@ void GamePlay::GamePlayController::onPositionChanged(int position)
 	{
 		processObstacle();
 	}
+	if (isEndBlock(block))
+	{
+		processEndBlock();
+	}
+}
+
+bool GamePlay::GamePlayController::isEndBlock(BlockType value)
+{
+	if (value == BlockType::TARGET)
+	{
+		return true;
+	}
+	return false;
+}
+
+void GamePlay::GamePlayController::processEndBlock()
+{
+	GameService::setGameState(GameState::CREDITS);
+	ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::LEVEL_COMPLETE);
+	ServiceLocator::getInstance()->getPlayerService()->levelComplete();
 }
