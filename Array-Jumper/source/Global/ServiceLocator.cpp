@@ -45,7 +45,7 @@ namespace Global
 		ui_service->update();
 	}
 
-	void ServiceLocator::render()
+	void ServiceLocator::render() //removed comments
 	{
 		graphic_service->render();
 		ui_service->render();
